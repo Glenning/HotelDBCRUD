@@ -44,7 +44,7 @@ namespace HotelDBCRUD
 
         private void Insertbutton_Click(object sender, EventArgs e) //Create or Insert
         {
-            string query = "insert into DemoHotel Values ('{idBox.Text.ToString()}','{nameBox.Text}','{addressBox.Text.ToString()}'.'{facilityBox.Text}')";
+            string query = "insert into DemoHotel Values ('{idBox.Text.ToString()}','{nameBox.Text}','{addressBox.Text.ToString()}'.'{facilityBox.Text.ToString}')";
             cmd.CommandText = query;
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -60,12 +60,12 @@ namespace HotelDBCRUD
             facilityBox.Clear();
         }
 
-        private void updateButton_Click(object sender, EventArgs e)
+        private void updateButton_Click(object sender, EventArgs e) //Update data
         {
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Update DemoHotel set name='" + nameBox.Text + "', Address='" + addressBox.Text.ToString() + "', Facility='" + facilityBox.Text + "' where Hotel_No='" + idBox.Text.ToString() + "' ";
+            cmd.CommandText = "Update DemoHotel set name='" + nameBox.Text + "', Address='" + addressBox.Text.ToString() + "', Facility='" + facilityBox.Text.ToString() + "' where Hotel_No='" + idBox.Text.ToString() + "' ";
             cmd.ExecuteNonQuery();
             conn.Close();
             displaydata();
@@ -76,7 +76,7 @@ namespace HotelDBCRUD
         {
             displaydata();
         }
-        private void displaydata()
+        private void displaydata() //Read and show all data
         {
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
@@ -90,7 +90,7 @@ namespace HotelDBCRUD
             conn.Close();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e) //Delete data
         {
             string query = "delete DemoHotel where Hotel_No='{idBox.Text.ToString()}'";
             cmd.CommandText = query;
